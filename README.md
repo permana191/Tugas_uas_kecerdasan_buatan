@@ -13,90 +13,82 @@ Sistem ini dirancang dengan antarmuka bertema *Cyberpunk / Terminal Dark Mode*, 
 6. **Animasi Terminal Log**: Efek visual *Command Line Interface (CLI)* saat mengeksekusi model AI.
 
 ## 📁 Struktur Folder Proyek
-```text
-TUGAS_UAS_KECERDASAN_BUATAN/
-│
-├── app/
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── style.css          # Desain UI/UX Cyberpunk (Dark Mode)
-│   │   ├── images/                # Menyimpan gambar grafik (1_heatmap, dsb)
-│   │   └── js/
-│   │       └── script.js          # Logika Jam Digital, ECharts, Animasi Terminal
-│   └── templates/
-│       ├── base.html              # Struktur Layout Induk (Sidebar & Header)
-│       ├── index.html             # Halaman Beranda
-│       ├── prediksi.html          # Halaman Form AI & Speedometer
-│       ├── radar.html             # Halaman Radar Atmosfer
-│       ├── analisis.html          # Halaman Visualisasi EDA
-│       └── model.html             # Halaman Metodologi & Evaluasi AI
-│
-├── data/
-│   └── aqi_dataset.csv            # Dataset tabular publik (sumber: Kaggle)
-│
-├── grafik_jurnal/                 # Folder output hasil render visualisasi matplotlib
-│
-├── models/
-│   └── random_forest_aqi_model.pkl # Model AI yang telah dilatih (Tuned)
-│
-├── .gitignore
-├── app.py                         # File Utama Backend (Flask & Routing)
-├── imputer_aqi.pkl                # File model imputer (penanganan missing values)
-├── Procfile                       # Konfigurasi deployment server
-├── README.md                      # Dokumentasi proyek
-├── requirements.txt               # Daftar pustaka (library) Python
-└── train_models.py                # Script pelatihan ML, evaluasi metrik, & EDA
+    TUGAS_UAS_KECERDASAN_BUATAN/
+    │
+    ├── app/
+    │   ├── static/
+    │   │   ├── css/
+    │   │   │   └── style.css          # Desain UI/UX Cyberpunk (Dark Mode)
+    │   │   ├── images/                # Menyimpan gambar grafik (1_heatmap, dsb)
+    │   │   └── js/
+    │   │       └── script.js          # Logika Jam Digital, ECharts, Animasi Terminal
+    │   └── templates/
+    │       ├── base.html              # Struktur Layout Induk (Sidebar & Header)
+    │       ├── index.html             # Halaman Beranda
+    │       ├── prediksi.html          # Halaman Form AI & Speedometer
+    │       ├── radar.html             # Halaman Radar Atmosfer
+    │       ├── analisis.html          # Halaman Visualisasi EDA
+    │       └── model.html             # Halaman Metodologi & Evaluasi AI
+    │
+    ├── data/
+    │   └── aqi_dataset.csv            # Dataset tabular publik (sumber: Kaggle)
+    │
+    ├── grafik_jurnal/                 # Folder output hasil render visualisasi matplotlib
+    │
+    ├── models/
+    │   └── random_forest_aqi_model.pkl # Model AI yang telah dilatih (Tuned)
+    │
+    ├── .gitignore
+    ├── app.py                         # File Utama Backend (Flask & Routing)
+    ├── imputer_aqi.pkl                # File model imputer (penanganan missing values)
+    ├── Procfile                       # Konfigurasi deployment server
+    ├── README.md                      # Dokumentasi proyek
+    ├── requirements.txt               # Daftar pustaka (library) Python
+    └── train_models.py                # Script pelatihan ML, evaluasi metrik, & EDA
 
 ## 🛠️ Persyaratan Sistem & Instalasi
-Sebelum menjalankan aplikasi, pastikan Anda telah menginstal Python 3.8+ di komputer Anda.
+Sebelum menjalankan aplikasi, pastikan Anda telah menginstal **Python 3.8+** di komputer Anda.
 
-Clone repositori ini (atau unduh zip folder proyek):
+1. **Clone repositori ini (atau unduh zip folder proyek):**
+   > git clone [https://github.com/username-anda/airguard-ai.git](https://github.com/username-anda/airguard-ai.git)
+   > cd airguard-ai
 
-Bash
-git clone [https://github.com/username-anda/airguard-ai.git](https://github.com/username-anda/airguard-ai.git)
-cd airguard-ai
-Buat dan aktifkan Virtual Environment (Sangat Direkomendasikan):
+2. **Buat dan aktifkan Virtual Environment (Sangat Direkomendasikan):**
+   > python -m venv .venv
+   >
+   > *Untuk Windows:*
+   > .venv\Scripts\activate
+   >
+   > *Untuk Mac/Linux:*
+   > source .venv/bin/activate
 
-Bash
-python -m venv .venv
+3. **Instal seluruh pustaka yang dibutuhkan:**
+   > pip install -r requirements.txt
 
-# Untuk Windows:
-.venv\Scripts\activate
-
-# Untuk Mac/Linux:
-source .venv/bin/activate
-Instal seluruh pustaka yang dibutuhkan:
-
-Bash
-pip install -r requirements.txt
-🚀 Cara Menjalankan Aplikasi
+## 🚀 Cara Menjalankan Aplikasi
 Terdapat dua skrip utama dalam proyek ini yang dapat Anda eksekusi.
 
-A. Melatih Ulang Model AI (Opsional)
-Jika Anda ingin melatih ulang algoritma Random Forest, membersihkan data outlier, atau merender ulang grafik visualisasi untuk laporan jurnal, jalankan perintah berikut di terminal:
+**A. Melatih Ulang Model AI (Opsional)**
+Jika Anda ingin melatih ulang algoritma Random Forest, membersihkan data *outlier*, atau merender ulang grafik visualisasi untuk laporan jurnal, jalankan perintah berikut di terminal:
+> python train_models.py
 
-Bash
-python train_models.py
-(Skrip ini akan memperbarui file random_forest_aqi_model.pkl, file imputer_aqi.pkl, dan meng-generate ulang 5 gambar PNG di dalam folder grafik_jurnal/).
+*(Skrip ini akan memperbarui file `random_forest_aqi_model.pkl`, file `imputer_aqi.pkl`, dan meng-generate ulang 5 gambar PNG di dalam folder `grafik_jurnal/`).*
 
-B. Menjalankan Web Dashboard Utama
+**B. Menjalankan Web Dashboard Utama**
 Untuk menghidupkan server Flask dan menggunakan aplikasi antarmuka prediksi:
+> python app.py
 
-Bash
-python app.py
-Setelah server berjalan dan terminal menampilkan pesan Running on http://127.0.0.1:5000, buka browser web Anda (Chrome/Edge/Firefox) dan akses URL tersebut.
+Setelah server berjalan dan terminal menampilkan pesan `Running on [http://127.0.0.1:5000](http://127.0.0.1:5000)`, buka browser web Anda (Chrome/Edge/Firefox) dan akses URL tersebut.
 
-📊 Metrik Evaluasi Model AI
-Model Random Forest pada aplikasi ini telah melalui proses pembersihan data outlier dan Hyperparameter Tuning (max_depth=10, n_estimators=150). Evaluasi menggunakan data uji (20%) menghasilkan:
+## 📊 Metrik Evaluasi Model AI
+Model Random Forest pada aplikasi ini telah melalui proses pembersihan data *outlier* dan *Hyperparameter Tuning* (`max_depth=10`, `n_estimators=150`). Evaluasi menggunakan data uji (20%) menghasilkan:
+* **Mean Absolute Error (MAE):** 37.03
+* **Mean Squared Error (MSE):** 1994.54
+* **R-Squared (R² Score):** 0.29 (29%)
 
-Mean Absolute Error (MAE): 37.03
-
-Mean Squared Error (MSE): 1994.54
-
-R-Squared (R² Score): 0.29 (29%)
-
-🔗 Tautan Deployment
+## 🔗 Tautan Deployment
 Aplikasi ini telah berhasil di-deploy dan dapat diakses secara publik menggunakan domain mandiri melalui tautan berikut:
-https://www.nama-domain-anda.my.id
+**[https://www.nama-domain-anda.my.id](https://www.nama-domain-anda.my.id)**
 
-Dikembangkan oleh Sigit Miraj Permana - Mahasiswa Teknik Informatika, Universitas Bale Bandung (UNIBBA).
+---
+*Dikembangkan oleh **Sigit Miraj Permana** - Mahasiswa Teknik Informatika, Universitas Bale Bandung (UNIBBA).*
