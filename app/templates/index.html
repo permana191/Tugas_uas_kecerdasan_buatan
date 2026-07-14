@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-container" style="text-align: center; margin-top: 5rem;">
+    <h1>Selamat Datang di AirGuard AI</h1>
+    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+        Sistem Deteksi Dini dan Prediksi Indeks Kualitas Udara (AQI) berbasis Web. 
+        Aplikasi ini ditenagai oleh algoritma <strong>Random Forest Regressor</strong> 
+        sebagai pemenuhan tugas Project-Based UAS Kecerdasan Buatan.
+    </p>
+    
+    <a href="{{ url_for('prediksi') }}" style="text-decoration: none;">
+        <button class="btn-submit" style="width: auto; padding: 15px 40px; font-size: 1.2rem;">
+            Mulai Prediksi Kualitas Udara 🚀
+        </button>
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-container" style="max-width: 1000px;">
+    <h1>Analisis & Eksplorasi Data (EDA)</h1>
+    <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+        Visualisasi dari proses pembersihan data outlier dan penemuan korelasi antar variabel lingkungan.
+    </p>
+
+    <!-- Menggunakan CSS Grid sejenak (Inline) untuk layout galeri -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        
+        <!-- Card Grafik 1 -->
+        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 15px; text-align: center;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--primary-color);">1. Matriks Korelasi (Heatmap)</h3>
+            <img src="{{ url_for('static', filename='images/1_heatmap_korelasi.png') }}" alt="Heatmap" style="width: 100%; border-radius: 10px;">
+        </div>
+
+        <!-- Card Grafik 2 -->
+        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 15px; text-align: center;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--primary-color);">2. Distribusi Indeks Kualitas Udara</h3>
+            <img src="{{ url_for('static', filename='images/2_distribusi_aqi.png') }}" alt="Distribusi AQI" style="width: 100%; border-radius: 10px;">
+        </div>
+
+        <!-- Card Grafik 3 -->
+        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 15px; text-align: center;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--primary-color);">3. Korelasi Industri vs AQI</h3>
+            <img src="{{ url_for('static', filename='images/3_scatter_industri_aqi.png') }}" alt="Scatter Plot Industri" style="width: 100%; border-radius: 10px;">
+        </div>
+
+        <!-- Card Grafik 5 -->
+        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 15px; text-align: center;">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--primary-color);">4. Tingkat Kepentingan Fitur</h3>
+            <img src="{{ url_for('static', filename='images/5_feature_importance.png') }}" alt="Feature Importance" style="width: 100%; border-radius: 10px;">
+        </div>
+
+    </div>
+</div>
+{% endblock %}

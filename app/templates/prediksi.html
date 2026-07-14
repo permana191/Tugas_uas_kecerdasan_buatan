@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-container">
+    <h1>Dashboard Prediksi Kecerdasan Buatan</h1>
+    <p class="subtitle">Deteksi tingkat polusi udara berdasarkan parameter iklim & lingkungan.</p>
+
+    <div class="layout-grid">
+        <!-- Kolom Kiri: Form Input & Geolokasi -->
+        <div class="form-section">
+            <button type="button" id="btn-geo" class="btn-geo">
+                📍 Gunakan Kondisi Cuaca Saat Ini (GPS)
+            </button>
+
+            <form method="POST" action="{{ url_for('prediksi') }}" id="prediksi-form">
+                <div class="form-group">
+                    <label>Suhu Udara (°C)</label>
+                    <input type="number" step="any" class="form-control" id="suhu" name="suhu" required>
+                </div>
+                <div class="form-group">
+                    <label>Kelembapan Udara (%)</label>
+                    <input type="number" step="any" class="form-control" id="kelembapan" name="kelembapan" required>
+                </div>
+                <div class="form-group">
+                    <label>Kecepatan Angin (km/h)</label>
+                    <input type="number" step="any" class="form-control" id="angin" name="angin" required>
+                </div>
+                <div class="form-group">
+                    <label>Kepadatan Lalu Lintas (1-10)</label>
+                    <input type="number" step="any" class="form-control" id="lalu_lintas" name="lalu_lintas" required placeholder="Isi manual (Misal: 7)">
+                </div>
+                <div class="form-group">
+                    <label>Aktivitas Industri (0-100)</label>
+                    <input type="number" step="any" class="form-control" id="industri" name="industri" required placeholder="Isi manual (Misal: 80)">
+                </div>
+                <button type="submit" class="btn-submit" id="btn-ai">Proses Prediksi AI</button>
+            </form>
+
+            <!-- KOTAK LOG TERMINAL (Tersembunyi secara default) -->
+            <div id="terminal-log" class="terminal-box" style="display: none;">
+                <div class="terminal-header">Terminal Execution Log</div>
+                <div id="terminal-content" class="terminal-content"></div>
+            </div>
+        </div>
+
+        <!-- Kolom Kanan: Hasil, Speedometer, Saran & Ekspor -->
+        <div class="result-section">
+            {% if hasil %}
+                <div class="result-card {{ warna }}">
+                    <h3>Indeks Kualitas Udara (AQI)</h3>
+                    <!-- Area Speedometer ECharts -->
+                    <div id="gauge-chart" style="width: 100%; height: 250px;"></div>
+                    
+                    <h2 class="status-text" style="color: {{ warna_hex }};">Status: {{ kategori }}</h2>
+                    
+                    <div class="alert-box">
+                        <strong>💡 Rekomendasi Sistem:</strong><br>
+                        {{ saran }}
+                    </div>
+
+                    <!-- TOMBOL EKSPOR LAPORAN -->
+                    <a href="{{ url_for('ekspor_laporan') }}" style="text-decoration: none;">
+                        <button class="btn-export">📥 Unduh Laporan Eksekusi (CSV)</button>
+                    </a>
+                </div>
+                
+                <script>
+                    window.aqiResult = {{ hasil }};
+                    window.aqiColor = "{{ warna_hex }}";
+                </script>
+            {% else %}
+                <div class="empty-state">
+                    <span style="font-size: 3rem;">🤖</span>
+                    <p>Sistem Radar & Model Random Forest Standby.<br>Menunggu injeksi data...</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

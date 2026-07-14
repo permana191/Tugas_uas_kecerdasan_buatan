@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-container">
+    <h1>Metodologi & Evaluasi Model AI</h1>
+    
+    <div style="background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Arsitektur Algoritma</h2>
+        <p style="line-height: 1.8; color: var(--text-muted); text-align: justify;">
+            Sistem ini dibangun menggunakan algoritma <strong>Random Forest Regressor</strong>. 
+            Algoritma ini dipilih karena ketangguhannya dalam menangani data lingkungan yang fluktuatif 
+            dan kemampuannya mengukur bobot setiap parameter pendeteksi (Feature Importance).
+            Model ini telah melalui tahap <em>Hyperparameter Tuning</em> dengan pembatasan kedalaman pohon (<code>max_depth=10</code>) 
+            dan 150 estimator untuk mencegah <em>overfitting</em>.
+        </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <!-- Kolom Evaluasi Metrik -->
+        <div style="flex: 1; min-width: 300px; background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 15px;">
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Metrik Evaluasi</h2>
+            <ul style="list-style: none; line-height: 2.5; color: var(--text-main); font-size: 1.1rem;">
+                <li style="border-bottom: 1px solid var(--glass-border);">✅ <strong>Mean Absolute Error (MAE):</strong> 37.03</li>
+                <li style="border-bottom: 1px solid var(--glass-border);">✅ <strong>Mean Squared Error (MSE):</strong> 1994.54</li>
+                <li style="border-bottom: 1px solid var(--glass-border);">✅ <strong>R-Squared (R² Score):</strong> 0.29 (29%)</li>
+            </ul>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #94a3b8; font-style: italic;">
+                *Catatan Analisis: Akurasi R² dipengaruhi oleh tidak adanya sensor polutan kimiawi (PM2.5, NO2) secara langsung pada dataset publik, sehingga model bergantung pada faktor cuaca dan proksi kepadatan wilayah.
+            </p>
+        </div>
+
+        <!-- Kolom Grafik Pembuktian -->
+        <div style="flex: 1; min-width: 300px; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 15px; text-align: center;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Validasi Aktual vs Prediksi</h3>
+            <img src="{{ url_for('static', filename='images/4_aktual_vs_prediksi.png') }}" alt="Aktual vs Prediksi" style="width: 100%; border-radius: 10px;">
+        </div>
+    </div>
+</div>
+{% endblock %}
