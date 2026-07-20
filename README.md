@@ -50,7 +50,7 @@ Sistem ini dirancang dengan antarmuka bertema *Cyberpunk / Terminal Dark Mode*, 
 Sebelum menjalankan aplikasi, pastikan Anda telah menginstal **Python 3.8+** di komputer Anda.
 
 1. **Clone repositori ini (atau unduh zip folder proyek):**
-   > git clone [https://github.com/username-anda/airguard-ai.git](https://github.com/username-anda/airguard-ai.git)
+   > git clone https://github.com/permana191/Tugas_uas_kecerdasan_buatan/
    > cd airguard-ai
 
 2. **Buat dan aktifkan Virtual Environment (Sangat Direkomendasikan):**
